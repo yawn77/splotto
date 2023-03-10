@@ -4,13 +4,14 @@ import (
 	"bytes"
 	"flag"
 	"fmt"
+	"math/rand"
 	"os"
 	"time"
 
 	"github.com/go-co-op/gocron"
 	"github.com/gookit/slog"
 	"github.com/yawn77/sphelper"
-	"github.com/yawn77/splotto/pkg/lotto"
+	"github.com/yawn77/splotto/pkg/lotto/player"
 )
 
 var version string
@@ -50,7 +51,7 @@ func runUpdateJob() {
 	s := gocron.NewScheduler(time.Local)
 	// _, err := s.Every(1).Day().At("00:00").Do(func() {
 	_, err := s.Every(5).Seconds().Do(func() {
-		lotto.Play(true)
+		player.Play(true)
 	})
 	if err != nil {
 		slog.Error(err)
@@ -76,6 +77,7 @@ func subMain(conf *Config) int {
 }
 
 func main() {
+	rand.New(rand.NewSource(time.Now().UnixNano()))
 	conf, output, err := parseFlags(os.Args[0], os.Args[1:])
 	if err == flag.ErrHelp {
 		slog.Error(output)
