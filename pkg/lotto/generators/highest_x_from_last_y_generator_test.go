@@ -1,11 +1,5 @@
 package generators_test
 
-import "flag"
-
-// add for successful tests
-var Username = flag.String("username", "", "Username")
-var Password = flag.String("password", "", "User password")
-
 // func TestMin(t *testing.T) {
 // 	tests := []struct {
 // 		testcase string

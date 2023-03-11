@@ -1,16 +1,11 @@
 package lotto_test
 
 import (
-	"flag"
 	"sort"
 	"testing"
 
 	"github.com/yawn77/splotto/pkg/lotto"
 )
-
-// add for successful tests
-var Username = flag.String("username", "", "Username")
-var Password = flag.String("password", "", "User password")
 
 func TestNewDraw(t *testing.T) {
 	// arrange
