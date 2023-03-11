@@ -6,11 +6,12 @@ const (
 )
 
 func NewDraw() Draw {
-	return Draw{make(map[int]interface{}, 6)}
+	return Draw{make(map[int]interface{}, 6), 0}
 }
 
 type Draw struct {
 	numbers map[int]interface{}
+	size    int
 }
 
 func (d Draw) Numbers() (numbers [6]int, err error) {
@@ -25,12 +26,17 @@ func (d Draw) Numbers() (numbers [6]int, err error) {
 	return [6]int(keys), nil
 }
 
-func (d Draw) AddNumber(n int) bool {
+func (d Draw) Size() int {
+	return d.size
+}
+
+func (d *Draw) AddNumber(n int) bool {
 	if d.IsValid() || n < 1 || n > 22 {
 		return false
 	}
 
 	d.numbers[n] = nil
+	d.size += 1
 	return true
 }
 

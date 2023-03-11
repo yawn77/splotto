@@ -13,7 +13,7 @@ func NewRandomGenerator() RandomGenerator {
 	return RandomGenerator{}
 }
 
-func (RandomGenerator) GenerateNumbers(history lotto.LottoHistory) (draw lotto.Draw) {
+func (RandomGenerator) GenerateNumbers(history lotto.LottoHistory) (draw lotto.Draw, randomNumbers int) {
 	draw = lotto.NewDraw()
 	for !draw.IsValid() {
 		n := rand.Intn(22) + 1
@@ -22,5 +22,5 @@ func (RandomGenerator) GenerateNumbers(history lotto.LottoHistory) (draw lotto.D
 			slog.Warn("tried to add invalid number (%d) to draw %v", n, draw)
 		}
 	}
-	return draw
+	return draw, 6
 }

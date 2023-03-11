@@ -24,6 +24,9 @@ func TestNewDraw(t *testing.T) {
 	if !ok {
 		t.Fatal("generated draw is invalid")
 	}
+	if d.Size() != 6 {
+		t.Fatal("size of draw is not 6")
+	}
 }
 
 func TestNumbers(t *testing.T) {

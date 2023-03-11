@@ -1,10 +1,11 @@
-package generators
+package generators_test
 
 import (
 	"flag"
 	"testing"
 
 	"github.com/yawn77/splotto/pkg/lotto"
+	"github.com/yawn77/splotto/pkg/lotto/generators"
 )
 
 // add for successful tests
@@ -13,10 +14,10 @@ var Password = flag.String("password", "", "User password")
 
 func TestRandom(t *testing.T) {
 	// arrange
-	g := NewRandomGenerator()
+	g := generators.NewRandomGenerator()
 
 	// act
-	draw := g.GenerateNumbers(lotto.LottoHistory{})
+	draw, _ := g.GenerateNumbers(lotto.LottoHistory{})
 
 	// assert
 	ok := draw.IsValid()

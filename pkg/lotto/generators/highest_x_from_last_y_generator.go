@@ -61,12 +61,13 @@ func histogramToSortedList(histogram Histogram) (sortedNumbers []int) {
 	return sortedNumbers
 }
 
-func (g HighestXfromLastYGenerator) GenerateNumbers(history lotto.LottoHistory) (draw lotto.Draw) {
+func (g HighestXfromLastYGenerator) GenerateNumbers(history lotto.LottoHistory) (draw lotto.Draw, randomNumbers int) {
 	draw = lotto.NewDraw()
 	sortedNumbers := histogramToSortedList(generateHistogram(history, g.drawsToConsider))
 	for i := 0; i < min(len(sortedNumbers), g.numbersToKeep, 6); i++ {
 		draw.AddNumber(sortedNumbers[i])
 	}
+	randomNumbers = 6 - draw.Size()
 	for !draw.IsValid() {
 		n := rand.Intn(22) + 1
 		ok := draw.AddNumber(n)
@@ -74,5 +75,5 @@ func (g HighestXfromLastYGenerator) GenerateNumbers(history lotto.LottoHistory) 
 			slog.Warn("tried to add invalid number (%d) to draw %v", n, draw)
 		}
 	}
-	return draw
+	return draw, randomNumbers
 }
