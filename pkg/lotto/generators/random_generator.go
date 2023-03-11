@@ -12,15 +12,15 @@ func NewRandomGenerator() RandomGenerator {
 	return RandomGenerator{}
 }
 
-func (RandomGenerator) GenerateNumbers(history player.LottoHistory) (numbers [6]int) {
-	set := make(map[int]bool)
-	for len(set) < 6 {
-		set[rand.Intn(22)+1] = true
+func (RandomGenerator) GenerateNumbers(history player.LottoHistory) (draw player.Draw) {
+	numberSet := make(map[int]bool)
+	for len(numberSet) < 6 {
+		numberSet[rand.Intn(22)+1] = true
 	}
 	i := 0
-	for k := range set {
-		numbers[i] = k
+	for number := range numberSet {
+		draw[i] = number
 		i++
 	}
-	return numbers
+	return draw
 }

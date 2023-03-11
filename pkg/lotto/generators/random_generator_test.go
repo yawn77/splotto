@@ -11,21 +11,21 @@ func TestRandom(t *testing.T) {
 	g := NewRandomGenerator()
 
 	// act
-	numbers := g.GenerateNumbers(player.LottoHistory{})
+	draw := g.GenerateNumbers(player.LottoHistory{})
 
 	// assert
-	if len(numbers) != 6 {
-		t.Fatal("expected 6 numbers to be generated")
+	if len(draw) != 6 {
+		t.Fatal("expected 6 numbers to be drawn")
 	}
-	set := make(map[int]bool)
-	for i := 0; i < len(numbers); i++ {
-		n := numbers[i]
+	numberSet := make(map[int]bool)
+	for i := 0; i < len(draw); i++ {
+		n := draw[i]
 		if n < 1 || n > 22 {
 			t.Fatalf("%d is not between 0 and 22", i)
 		}
-		set[n] = true
+		numberSet[n] = true
 	}
-	if len(set) != 6 {
-		t.Fatal("expected 6 different numbers to be generated")
+	if len(numberSet) != 6 {
+		t.Fatal("expected 6 different numbers to be drawn: %v", numberSet)
 	}
 }
