@@ -1,4 +1,4 @@
-package player
+package lotto
 
 import (
 	"github.com/gookit/slog"
@@ -14,11 +14,8 @@ const ()
 // errors
 const ()
 
-type Error string
-
-func (e Error) Error() string { return string(e) }
-
-type LottoHistory [][6]int
+type LottoHistory []Draw
+type SetOfNumbers map[int]bool
 
 func Play(yearOnly bool) {
 	creds, err := sphelper.GetCredentials()

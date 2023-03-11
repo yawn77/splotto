@@ -11,7 +11,7 @@ import (
 	"github.com/go-co-op/gocron"
 	"github.com/gookit/slog"
 	"github.com/yawn77/sphelper"
-	"github.com/yawn77/splotto/pkg/lotto/player"
+	"github.com/yawn77/splotto/pkg/lotto"
 )
 
 var version string
@@ -51,7 +51,7 @@ func runUpdateJob() {
 	s := gocron.NewScheduler(time.Local)
 	// _, err := s.Every(1).Day().At("00:00").Do(func() {
 	_, err := s.Every(5).Seconds().Do(func() {
-		player.Play(true)
+		lotto.Play(true)
 	})
 	if err != nil {
 		slog.Error(err)
